@@ -17,6 +17,28 @@ endblock %} {% block content %} {% block styles %} {{super()}}
   {% if prediction %}
   <br />
   <br />
-  <h3>{{prediction}}</h3>
+  <h3>This text is: {{ prediction }}</h3>
+  <h4>Confidence Score: {{ confidence }}%</h4>
+  <!-- <br />
+    <h6>All Sentiments: {{ sentiments }}</h6> -->
+  <br />
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Sentence</th>
+        <th scope="col">Label</th>
+        <th scope="col">Confidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sentiment in sentiments %}
+      <tr>
+        <td>{{ sentiment['sentence'] }}</td>
+        <td>{{ sentiment['label'] }}</td>
+        <td>{{ sentiment['confidence'] }}%</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
   {% endif %} {% endblock %}
 </div>
